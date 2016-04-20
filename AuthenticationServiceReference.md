@@ -1,10 +1,12 @@
 Authentication Service
 ======================
 
-Environment
------------
+The Authentication Service is a simple implementation of the OAuth standard
 
-## Environment
+[GitHub Pages guide >][https://pages.github.com]
+[GitHub Pages guide >][GitHub Pages]
+
+## Environments
 
 ### Production 
 ```
@@ -24,6 +26,7 @@ https://test-auth.3shapecommunicate.com
 
 ## Authentication
 
+
 ### Request type
 ```
 Http post
@@ -33,3 +36,5 @@ Http post
 ```
 /oauth/token
 ```
+
+[GitHub pages]: https://pages.github.com
