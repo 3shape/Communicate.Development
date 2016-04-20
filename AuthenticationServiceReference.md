@@ -14,13 +14,11 @@ https://auth.3shapecommunicate.com
 ```
 
 ### Staging
+This environment is for pre-release feature testing 
+New features will be made available in this environment before final release to the production environment 
+
 ``` 
 https://staging-auth.3shapecommunicate.com
-```
-
-### Test
-```
-https://test-auth.3shapecommunicate.com
 ```
 
 
