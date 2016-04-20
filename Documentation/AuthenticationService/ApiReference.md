@@ -1,32 +1,35 @@
 Authentication Service
-=======
+======================
 
-### Environment
+Environment
+-----------
 
-#### Production 
+## Environment
+
+### Production 
 ```
 https://auth.3shapecommunicate.com
 ```
 
-#### Staging
+### Staging
 ``` 
 https://staging-auth.3shapecommunicate.com
 ```
 
-#### Staging
+### Test
 ```
 https://test-auth.3shapecommunicate.com
 ```
 
 
-### Authentication
+## Authentication
 
-#### Request type
+### Request type
 ```
 Http post
 ```
 
-#### Address
+### Address
 ```
 /oauth/token
 ```
