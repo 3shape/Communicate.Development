@@ -6,6 +6,7 @@ The User Service service is the central location for access to and management of
 
 Environments
 ======================
+List of available environment and their use
 
 ## Production 
 ```
@@ -22,6 +23,7 @@ https://staging-users.3shapecommunicate.com
 
 User requests
 ======================
+A list of user specific actions that can be performed on the service 
 
 Create User 
 --------------
@@ -48,6 +50,9 @@ The following fields are required for creating a user.
  PhoneNumber(Max32)
  PostalCode(Max50)
 ```
+
+### Reponse
+
 
 ### Example 1
 
@@ -93,6 +98,10 @@ Request body
 }
 ```
 
+### Reponse
+Communicate user object
+
+
 Get User 
 --------------
 There are multiple ways of retriving information about a User 
@@ -119,6 +128,19 @@ This endpoint will return the user object that matches the provided email
 /api/users/{email}
 ```
 
+### Reponse
+Header
+```
+http status 200
+Content-Type: application/json; charset=utf-8
+```
+
+Body
+```
+Communicate user object
+```
+
+
 ### Example 1
 Request header
 ```
@@ -140,5 +162,77 @@ Request header
 ```
 GET https://users.3shapecommunicate.com/api/users/dan@dentist.com HTTP/1.1
 Authorization: Bearer <token>
+Host: users.3shapecommunicate.com
+```
+
+Connection requests
+======================
+Connections is the way which Communicate users use to exchange data. If a approved connection is not available between two users they are not able to collaborate on a case.
+
+Request Connection
+--------------
+The process of initiating a connection, this requires access to both users Communicate User Id
+
+
+### Request type
+```
+Http post
+```
+
+### Address
+This endpoint will request a connection from UserId the user the authorization token belongs to - to the remote user with the provided id (RemoteUserId)  
+
+```
+/api/users/{userId}/requestconnection/{remoteUserId}
+```
+
+### Reponse
+Header
+```
+http status 200
+Content-Type: application/json; charset=utf-8
+```
+
+Body
+```
+Communicate user object
+```
+
+### Example 1
+Request header
+```
+POST http://users.3shapecommunicate.com/api/users/95e8dfe9-9e32-48d0-adad-9fe200f1447c/requestconnection/5d80ea7f-feb9-41a3-ad8c-a0a8010f0477 HTTP/1.1
+Authorization: Bearer <Token>
+Host: users.3shapecommunicate.com
+```
+
+Approve Connection
+--------------
+Performing this request approves a connection between two parties. This request must be performed by the user (with the token of) that was specified as the remote user
+
+### Request type
+```
+Http post
+```
+
+### Address
+This endpoint will approve the connection between two parties
+
+```
+/api/users/{userId}/connection/{connectionId}/approve 
+```
+
+### Reponse
+Header
+```
+http status 200
+Content-Type: application/json; charset=utf-8
+```
+
+### Example 1
+Request header
+```
+POST http://users.3shapecommunicate.com/api/users/5d80ea7f-feb9-41a3-ad8c-a0a8010f0477/connection/94457d78-ad6d-4f90-8eaf-a59100e438ea/approve HTTP/1.1
+Authorization: Bearer <Token>
 Host: users.3shapecommunicate.com
 ```
