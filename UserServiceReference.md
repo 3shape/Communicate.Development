@@ -167,7 +167,7 @@ Authorization: Bearer <token>
 Host: users.3shapecommunicate.com
 ```
 
-### Example 2
+### Example 3
 Request header
 ```
 GET https://users.3shapecommunicate.com/api/users/dan@dentist.com HTTP/1.1
