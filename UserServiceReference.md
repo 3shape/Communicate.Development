@@ -52,6 +52,16 @@ The following fields are required for creating a user.
 ```
 
 ### Reponse
+Header
+```
+http status 200
+Content-Type: application/json; charset=utf-8
+```
+
+Body
+```
+Communicate user object
+```
 
 
 ### Example 1
@@ -233,6 +243,37 @@ Content-Type: application/json; charset=utf-8
 Request header
 ```
 POST http://users.3shapecommunicate.com/api/users/5d80ea7f-feb9-41a3-ad8c-a0a8010f0477/connection/94457d78-ad6d-4f90-8eaf-a59100e438ea/approve HTTP/1.1
+Authorization: Bearer <Token>
+Host: users.3shapecommunicate.com
+```
+
+Delete Connection
+--------------
+This is the method to reject or remove a connection.
+
+### Request type
+```
+Http delete
+```
+
+### Address
+This endpoint will remove a connection - the endpoint does not take the connections status into account, any connection can be deleted.
+
+```
+/api/users/{userId}/connection/{connectionId} 
+```
+
+### Reponse
+Header
+```
+http status 200
+Content-Type: application/json; charset=utf-8
+```
+
+### Example 1
+Request header
+```
+DELETE http://users.3shapecommunicate.com/api/users/5d80ea7f-feb9-41a3-ad8c-a0a8010f0477/connection/94457d78-ad6d-4f90-8eaf-a59100e438ea HTTP/1.1
 Authorization: Bearer <Token>
 Host: users.3shapecommunicate.com
 ```
