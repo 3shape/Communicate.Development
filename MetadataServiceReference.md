@@ -125,7 +125,7 @@ Type
 Http get
 ```
 
-Address
+_Address_
 
 Get the first page of cases
 ```
