@@ -32,7 +32,7 @@ https://staging-eumetadata.3shapecommunicate.com
 ```
 
 
-# Case requests
+# Get Case requests
 
 A list of user specific actions that can be performed on the service 
 
@@ -191,7 +191,7 @@ Getting a paged list of case.
 
 * The page size is 10 and a counter describing the amount of cases
 * List of cases is always returned in decending order (date)
-* Cases are returned with in a timespan
+* Cases are returned with in a timespan (yyyy-mm-ddThh:mm:ssZ) 
 
 ### Request
 
