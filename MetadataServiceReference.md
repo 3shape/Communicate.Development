@@ -77,7 +77,7 @@ Communicate case object
 
 Header
 ```
-HTTP/1.1 400 BAD REQUEST
+HTTP/1.1 400 Bad Request
 Content-Type: application/json; charset=utf-8
 ```
 
@@ -91,7 +91,7 @@ No case with Id {id} could be found
 This happens if a case is accessed with a user that is not an actor on the case
 Header
 ```
-HTTP/1.1 400 BAD REQUEST
+HTTP/1.1 400 Bad Request
 Content-Type: application/json; charset=utf-8
 ```
 
@@ -152,7 +152,7 @@ Communicate case object
 
 Header
 ```
-HTTP/1.1 400 BAD REQUEST
+HTTP/1.1 400 Bad Request
 Content-Type: application/json; charset=utf-8
 ```
 
@@ -166,7 +166,7 @@ No case with Id {id} could be found
 This happens if a case is accessed with a user that is not an actor on the case
 Header
 ```
-HTTP/1.1 400 BAD REQUEST
+HTTP/1.1 400 Bad Request
 Content-Type: application/json; charset=utf-8
 ```
 
