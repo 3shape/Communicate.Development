@@ -68,6 +68,7 @@ Body
 access_token
 ```
 
+
 **Failed: invalid credentials or user does not exist**
 
 Header
@@ -94,7 +95,7 @@ Authorization: Basic d2VsX2FwqTEw0ndlYl9zcGkxMF8zZvNyZLQ=
 
 Body
 ```
-username=some4%40email.com&password=123456&grant_type=password
+username=some@email.com&password=123456&grant_type=password
 ```
 
 ## Refresh token
