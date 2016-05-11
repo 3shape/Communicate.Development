@@ -127,7 +127,7 @@ access_token
 
 Header
 ```
-HTTP/1.1 200 OK
+HTTP/1.1 200 Ok
 Content-Type: application/json; charset=utf-8
 ```
 
@@ -138,6 +138,20 @@ Client (OAuth client name)
 ClientType (OAuth client type)
 LifeTime (Lifetime)
 UtcIssued (Issued time)
+```
+
+
+**Failed: Invalid token**
+
+Header
+```
+HTTP/1.1 500 Internal Server Error
+Content-Type: application/json; charset=utf-8
+```
+
+Body
+```
+An error has occurred.
 ```
 
 
