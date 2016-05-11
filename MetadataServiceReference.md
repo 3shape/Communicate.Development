@@ -97,7 +97,7 @@ Body
 You don't have permission to access case {id}
 ```
 
-## Example 1
+### Example 1
 Url
 ```
 GET https://eumetadata.3shapecommunicate.com/api/cases/531918a6-2879-48af-9434-a57600ac4123 HTTP/1.1
