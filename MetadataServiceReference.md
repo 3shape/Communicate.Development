@@ -41,17 +41,19 @@ Getting a case with a known Id is performed by making a get request to /api/case
 
 _note: write something with case versions_
 
+## Request
 
-## Request type
+Type 
 ```
 Http post
 ```
 
-## Address
+Address
 ```
  /api/case/{id}
 ```
-## Required field
+
+Required field
 _There are no required fields_
 
 ## Reponse
