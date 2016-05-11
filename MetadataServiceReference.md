@@ -160,7 +160,7 @@ Count(int)
 
 ## Example 1
 
-#Request
+### Request
 Url
 ```
 GET https://eumetadata.3shapecommunicate.com/api/cases?page=0 HTTP/1.1
@@ -170,7 +170,7 @@ Header
 Authorization: Bearer <token>
 ```
 
-#Response
+### Response
 ```
 {Cases : [
     { ... },
@@ -190,7 +190,7 @@ Count :  11
 
 ## Example 2
 
-###Request
+### Request
 Url
 ```
 GET https://eumetadata.3shapecommunicate.com/api/cases?page=0&from=2000-01-01 HTTP/1.1
@@ -200,7 +200,7 @@ Header
 Authorization: Bearer <token>
 ```
 
-###Response
+### Response
 ```
 {Cases : [
     { ... },
@@ -216,40 +216,10 @@ Authorization: Bearer <token>
 Count :  9
 } 
 ```
-
-## Example 2
-
-###Request
-Url
-```
-GET https://eumetadata.3shapecommunicate.com/api/cases?page=0&from=2016-01-01 HTTP/1.1
-```
-Header
-```
-Authorization: Bearer <token>
-```
-
-###Response
-```
-{Cases : [
-    { ... },
-    { ... },
-    { ... },
-    { ... },
-    { ... },
-    { ... },
-    { ... },
-    { ... },
-    { ... }
-],
-Count :  9
-} 
-```
-
 
 ## Example 3
 
-###Request
+### Request
 Url
 ```
 GET https://eumetadata.3shapecommunicate.com/api/cases?page=0&from=2016-01-01T12:00:00Z&to=2016-01-02T18:00:00Z HTTP/1.1
@@ -259,7 +229,7 @@ Header
 Authorization: Bearer <token>
 ```
 
-###Response
+### Response
 ```
 {Cases : [
     { ... },
