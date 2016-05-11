@@ -32,16 +32,16 @@ https://staging-eumetadata.3shapecommunicate.com
 ```
 
 
-#Case requests
+# Case requests
 
 A list of user specific actions that can be performed on the service 
 
-#Get Case 
+## Get Case 
 Getting a case with a known Id is performed by making a get request to /api/cases/{id}. The key element to the request are is the Id. This is a GUID.
 
 _note: write something with case versions_
 
-## Request
+### Request
 
 Type 
 ```
@@ -58,9 +58,9 @@ Required field
 There are no required fields
 ```
 
-## Reponse
+### Reponses
 
-### Success
+**Success**
 Header
 ```
 http status 200
@@ -72,7 +72,7 @@ Body
 Communicate case object
 ```
 
-### Failed: Case does not exist
+**Failed: Case does not exist**
 Header
 ```
 http status 400
@@ -84,7 +84,7 @@ Body
 No case with Id {id} could be found
 ```
 
-### Failed: Unable to access case
+**Failed: Unable to access case**
 This happens if a case is accessed with a user that is not an actor on the case
 Header
 ```
@@ -108,21 +108,21 @@ Authorization: Bearer <token>
 ```
 
 
-#Get Cases 
+## Get Cases 
 Getting a paged list of case.
 
 * The page size is 10 and a counter describing the amount of cases
 * List of cases is always returned in decending order (date)
 * Cases are returned with in a timespan
 
-## Request
+### Request
 
 Type 
 ```
 Http get
 ```
 
-Address
+**Address**
 
 Get the first page of cases
 ```
@@ -143,9 +143,9 @@ Required field
 page
 ```
 
-## Reponse
+### Reponse
 
-### Success
+**Success**
 Header
 ```
 http status 200
@@ -158,9 +158,9 @@ Cases[10]
 Count(int)
 ```
 
-## Example 1
+### Example 1
 
-### Request
+**Request**
 Url
 ```
 GET https://eumetadata.3shapecommunicate.com/api/cases?page=0 HTTP/1.1
@@ -170,7 +170,7 @@ Header
 Authorization: Bearer <token>
 ```
 
-### Response
+**Response**
 ```
 {Cases : [
     { ... },
@@ -188,9 +188,9 @@ Count :  11
 } 
 ```
 
-## Example 2
+### Example 2
 
-### Request
+**Request**
 Url
 ```
 GET https://eumetadata.3shapecommunicate.com/api/cases?page=0&from=2000-01-01 HTTP/1.1
@@ -200,7 +200,7 @@ Header
 Authorization: Bearer <token>
 ```
 
-### Response
+**Response**
 ```
 {Cases : [
     { ... },
@@ -217,9 +217,9 @@ Count :  9
 } 
 ```
 
-## Example 3
+### Example 3
 
-### Request
+**Request**
 Url
 ```
 GET https://eumetadata.3shapecommunicate.com/api/cases?page=0&from=2016-01-01T12:00:00Z&to=2016-01-02T18:00:00Z HTTP/1.1
@@ -229,7 +229,7 @@ Header
 Authorization: Bearer <token>
 ```
 
-### Response
+**Response**
 ```
 {Cases : [
     { ... },
