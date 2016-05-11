@@ -61,6 +61,7 @@ There are no required fields
 ### Reponses
 
 **Success**
+
 Header
 ```
 http status 200
@@ -73,6 +74,7 @@ Communicate case object
 ```
 
 **Failed: Case does not exist**
+
 Header
 ```
 http status 400
@@ -85,6 +87,7 @@ No case with Id {id} could be found
 ```
 
 **Failed: Unable to access case**
+
 This happens if a case is accessed with a user that is not an actor on the case
 Header
 ```
@@ -122,7 +125,7 @@ Type
 Http get
 ```
 
-**Address**
+Address
 
 Get the first page of cases
 ```
@@ -146,6 +149,7 @@ page
 ### Reponse
 
 **Success**
+
 Header
 ```
 http status 200
@@ -161,6 +165,7 @@ Count(int)
 ### Example 1
 
 **Request**
+
 Url
 ```
 GET https://eumetadata.3shapecommunicate.com/api/cases?page=0 HTTP/1.1
@@ -171,6 +176,7 @@ Authorization: Bearer <token>
 ```
 
 **Response**
+
 ```
 {Cases : [
     { ... },
@@ -191,6 +197,7 @@ Count :  11
 ### Example 2
 
 **Request**
+
 Url
 ```
 GET https://eumetadata.3shapecommunicate.com/api/cases?page=0&from=2000-01-01 HTTP/1.1
@@ -201,6 +208,7 @@ Authorization: Bearer <token>
 ```
 
 **Response**
+
 ```
 {Cases : [
     { ... },
@@ -220,6 +228,7 @@ Count :  9
 ### Example 3
 
 **Request**
+
 Url
 ```
 GET https://eumetadata.3shapecommunicate.com/api/cases?page=0&from=2016-01-01T12:00:00Z&to=2016-01-02T18:00:00Z HTTP/1.1
@@ -230,6 +239,7 @@ Authorization: Bearer <token>
 ```
 
 **Response**
+
 ```
 {Cases : [
     { ... },
