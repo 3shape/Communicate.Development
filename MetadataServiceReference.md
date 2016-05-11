@@ -64,7 +64,7 @@ There are no required fields
 
 Header
 ```
-http status 200
+HTTP/1.1 200 OK
 Content-Type: application/json; charset=utf-8
 ```
 
@@ -77,7 +77,7 @@ Communicate case object
 
 Header
 ```
-http status 400
+HTTP/1.1 400 BAD REQUEST
 Content-Type: application/json; charset=utf-8
 ```
 
@@ -91,7 +91,7 @@ No case with Id {id} could be found
 This happens if a case is accessed with a user that is not an actor on the case
 Header
 ```
-http status 400
+HTTP/1.1 400 BAD REQUEST
 Content-Type: application/json; charset=utf-8
 ```
 
@@ -139,7 +139,7 @@ version
 
 Header
 ```
-http status 200
+HTTP/1.1 200 OK
 Content-Type: application/json; charset=utf-8
 ```
 
@@ -152,7 +152,7 @@ Communicate case object
 
 Header
 ```
-http status 400
+HTTP/1.1 400 BAD REQUEST
 Content-Type: application/json; charset=utf-8
 ```
 
@@ -166,7 +166,7 @@ No case with Id {id} could be found
 This happens if a case is accessed with a user that is not an actor on the case
 Header
 ```
-http status 400
+HTTP/1.1 400 BAD REQUEST
 Content-Type: application/json; charset=utf-8
 ```
 
@@ -227,7 +227,7 @@ page
 
 Header
 ```
-http status 200
+HTTP/1.1 200 OK
 Content-Type: application/json; charset=utf-8
 ```
 
