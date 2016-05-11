@@ -110,6 +110,81 @@ Header
 Authorization: Bearer <token>
 ```
 
+## Get Case version
+Getting a case with a known Id and a specific version is performed by making a get request to /api/cases/{id}/version/{version}. 
+
+Every time a case is updated a full version of that case is saved and will be available with this api.
+
+### Request
+
+Type 
+```
+Http get
+```
+
+Address
+```
+ /api/cases/{id}/version/{version}
+```
+
+Required field
+```
+id
+version
+```
+
+### Reponses
+
+**Success**
+
+Header
+```
+http status 200
+Content-Type: application/json; charset=utf-8
+```
+
+Body
+```
+Communicate case object
+```
+
+**Failed: Case does not exist**
+
+Header
+```
+http status 400
+Content-Type: application/json; charset=utf-8
+```
+
+Body
+```
+No case with Id {id} could be found
+```
+
+**Failed: Unable to access case**
+
+This happens if a case is accessed with a user that is not an actor on the case
+Header
+```
+http status 400
+Content-Type: application/json; charset=utf-8
+```
+
+Body
+```
+You don't have permission to access case {id}
+```
+
+### Example 1
+Url
+```
+GET https://eumetadata.3shapecommunicate.com/api/cases/531918a6-2879-48af-9434-a57600ac4123/version/1 HTTP/1.1
+```
+Header
+```
+Authorization: Bearer <token>
+```
+
 
 ## Get Cases 
 Getting a paged list of case.
