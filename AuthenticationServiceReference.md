@@ -123,6 +123,7 @@ access_token
 ### Response
 
 **success**
+
 Header
 ```
 HTTP/1.1 200 OK
