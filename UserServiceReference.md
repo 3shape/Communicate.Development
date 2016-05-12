@@ -1,11 +1,11 @@
-User Service
-======================
+# User Service
+
 
 The User Service service is the central location for access to and management of all shared user information. 
 
 
-Environments
-======================
+# Environments
+
 List of available environment and their use
 
 ## Production 
@@ -21,25 +21,25 @@ New features will be made available in this environment before final release to 
 https://staging-users.3shapecommunicate.com
 ```
 
-User requests
-======================
+# User requests
+
 A list of user specific actions that can be performed on the service 
 
-Create User 
---------------
+## Create User 
 
-### Request type
+### Request 
+
+Type
 ```
 Http post
 ```
 
-### Address
+Address
 ```
  /api/users
 ```
-### Required field
-The following fields are required for creating a user.
 
+Required field
 ```
  AddressLine(Max50)
  City(Max50)
@@ -52,9 +52,10 @@ The following fields are required for creating a user.
 ```
 
 ### Reponse
+
 Header
 ```
-http status 200
+HTTP/1.1 200 OK
 Content-Type: application/json; charset=utf-8
 ```
 
@@ -66,15 +67,19 @@ Communicate user object
 
 ### Example 1
 
-Request header
+**Request**
+
+Url
 ```
 POST https://users.3shapecommunicate.com/api/users HTTP/1.1
-Content-Type: application/json; charset=utf-8
-Host: users.3shapecommunicate.com
-Expect: 100-continue
 ```
 
-Request body
+Header
+```
+No header required
+```
+
+Body
 ```
 {
     "Password":"123QWEasd",
@@ -108,21 +113,26 @@ Request body
 }
 ```
 
-### Reponse
+**Response**
+```
 Communicate user object
+```
 
 
-Get User 
---------------
+## Get User 
+
 There are multiple ways of retriving information about a User 
 **Note:If requesting the object of a user who is not you, the content of the user object will be filtered to match your relationship with the user**
 
-### Request type
+### Request 
+
+Type
 ```
 Http get
 ```
 
-### Address
+_Address_
+
 This endpoint will return the user object for the user that matches the token the request was made with
 ```
 /api/users/me
@@ -139,9 +149,10 @@ This endpoint will return the user object that matches the provided email
 ```
 
 ### Reponse
+
 Header
 ```
-http status 200
+HTTP/1.1 200 OK
 Content-Type: application/json; charset=utf-8
 ```
 
@@ -152,44 +163,80 @@ Communicate user object
 
 
 ### Example 1
-Request header
+
+**Request**
+
+Url
 ```
 GET https://users.3shapecommunicate.com/api/users/me HTTP/1.1
+```
+
+Header
+```
 Authorization: Bearer <token>
-Host: users.3shapecommunicate.com
+```
+
+**Response**
+```
+Communicate user object
 ```
 
 ### Example 2
-Request header
+
+**Request**
+
+Url
 ```
 GET https://users.3shapecommunicate.com/api/users/531918a6-2879-48af-9434-a57600ac4123 HTTP/1.1
-Authorization: Bearer <token>
-Host: users.3shapecommunicate.com
 ```
+
+Header
+```
+Authorization: Bearer <token>
+```
+
+**Response**
+```
+Communicate user object
+```
+
 
 ### Example 3
-Request header
+
+**Request**
+
+Url
 ```
 GET https://users.3shapecommunicate.com/api/users/dan@dentist.com HTTP/1.1
-Authorization: Bearer <token>
-Host: users.3shapecommunicate.com
 ```
 
-Connection requests
-======================
+Header
+```
+Authorization: Bearer <token>
+```
+
+**Response**
+```
+Communicate user object
+```
+
+
+# Connection requests
+
 Connections is the way which Communicate users use to exchange data. If a approved connection is not available between two users they are not able to collaborate on a case.
 
-Request Connection
---------------
+## Request Connection
 The process of initiating a connection, this requires access to both users Communicate User Id
 
 
-### Request type
+### Request 
+
+Type
 ```
 Http post
 ```
 
-### Address
+Address
 This endpoint will request a connection from UserId the user the authorization token belongs to - to the remote user with the provided id (RemoteUserId)  
 
 ```
@@ -197,35 +244,49 @@ This endpoint will request a connection from UserId the user the authorization t
 ```
 
 ### Reponse
+
 Header
 ```
-http status 200
+HTTP/1.1 200 OK
 Content-Type: application/json; charset=utf-8
 ```
 
 Body
 ```
-Communicate user object
+Communicate Connection object
 ```
 
 ### Example 1
-Request header
+
+**Request**
+
+Url
 ```
 POST http://users.3shapecommunicate.com/api/users/95e8dfe9-9e32-48d0-adad-9fe200f1447c/requestconnection/5d80ea7f-feb9-41a3-ad8c-a0a8010f0477 HTTP/1.1
-Authorization: Bearer <Token>
-Host: users.3shapecommunicate.com
 ```
 
-Approve Connection
---------------
+Header
+```
+Authorization: Bearer <token>
+```
+
+**Response**
+```
+Communicate Connection object
+```
+
+
+## Approve Connection
 Performing this request approves a connection between two parties. This request must be performed by the user (with the token of) that was specified as the remote user
 
-### Request type
+### Request 
+
+Type
 ```
 Http post
 ```
 
-### Address
+Address
 This endpoint will approve the connection between two parties
 
 ```
@@ -233,30 +294,44 @@ This endpoint will approve the connection between two parties
 ```
 
 ### Reponse
+
 Header
 ```
-http status 200
+HTTP/1.1 200 OK
 Content-Type: application/json; charset=utf-8
-```
+``` 
 
 ### Example 1
-Request header
+
+**Request**
+
+Url
 ```
 POST http://users.3shapecommunicate.com/api/users/5d80ea7f-feb9-41a3-ad8c-a0a8010f0477/connection/94457d78-ad6d-4f90-8eaf-a59100e438ea/approve HTTP/1.1
-Authorization: Bearer <Token>
-Host: users.3shapecommunicate.com
 ```
 
-Delete Connection
---------------
+Header
+```
+Authorization: Bearer <token>
+```
+
+**Response**
+```
+HTTP/1.1 200 OK
+```
+
+
+## Delete Connection
 This is the method to reject or remove a connection.
 
-### Request type
+### Request 
+
+Type
 ```
 Http delete
 ```
 
-### Address
+Address
 This endpoint will remove a connection - the endpoint does not take the connections status into account, any connection can be deleted.
 
 ```
@@ -266,14 +341,25 @@ This endpoint will remove a connection - the endpoint does not take the connecti
 ### Reponse
 Header
 ```
-http status 200
+HTTP/1.1 200 OK
 Content-Type: application/json; charset=utf-8
 ```
 
 ### Example 1
-Request header
+
+**Request**
+
+Url
 ```
 DELETE http://users.3shapecommunicate.com/api/users/5d80ea7f-feb9-41a3-ad8c-a0a8010f0477/connection/94457d78-ad6d-4f90-8eaf-a59100e438ea HTTP/1.1
-Authorization: Bearer <Token>
-Host: users.3shapecommunicate.com
+```
+
+Header
+```
+Authorization: Bearer <token>
+```
+
+**Response**
+```
+HTTP/1.1 200 OK
 ```
