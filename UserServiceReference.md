@@ -36,19 +36,19 @@ Http post
 
 Address
 ```
- /api/users
+/api/users
 ```
 
 Required field
 ```
- AddressLine(Max50)
- City(Max50)
- Country(ISO 3166 A2)
- Email(Max255)
- Name(Max255)
- Password(Max128)
- PhoneNumber(Max32)
- PostalCode(Max50)
+AddressLine(Max50)
+City(Max50)
+Country(ISO 3166 A2)
+Email(Max255)
+Name(Max255)
+Password(Max128)
+PhoneNumber(Max32)
+PostalCode(Max50)
 ```
 
 ### Reponse
