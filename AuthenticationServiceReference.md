@@ -136,7 +136,7 @@ Body
 User (Email)
 Client (OAuth client name)
 ClientType (OAuth client type)
-LifeTime (Lifetime)
+LifeTime (Lifetime in secunds)
 UtcIssued (Issued time)
 ```
 
@@ -154,5 +154,8 @@ Body
 An error has occurred.
 ```
 
+# Pairing 
+
 
 [OAuth standard page]: http://oauth.net/2/
+
