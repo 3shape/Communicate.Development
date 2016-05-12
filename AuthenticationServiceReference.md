@@ -79,7 +79,7 @@ Content-Type: application/json; charset=utf-8
 
 Body
 ```
-access_token
+No body is returned
 ```
 
 ### Example 1
