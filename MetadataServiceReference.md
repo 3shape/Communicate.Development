@@ -396,6 +396,18 @@ Body
 Stream of data
 ```
 
+**Failed: Don't have permissions to access the file**
+
+Header
+```
+HTTP/1.1 400 Bad Request
+```
+
+Body
+```
+You don't have permission to access this resource.
+```
+
 ### Example 1
 
 **Request**
