@@ -32,14 +32,14 @@ https://staging-eumetadata.3shapecommunicate.com
 ```
 
 
-# Get Case requests
+# Case requests
 
 A list of user specific actions that can be performed on the service 
 
 ## Get Case 
 Getting a case with a known Id is performed by making a get request to /api/cases/{id}. The key element to the request are is the Id. This is a GUID.
 
-_note: write something with case versions_
+Using Get Case will always return the latest version of the Case.
 
 ### Request
 
@@ -327,4 +327,160 @@ Authorization: Bearer <token>
 ],
 Count :  7
 } 
+```
+
+# Files
+
+This section describes accessing the diffrent files on a case
+
+## Attachment 
+
+All files associated with a case can always be located in the Attachment section of a case.
+
+### Description
+
+Attachments are located at the root of the Case object
+```
+    {
+        Id : Id of the case
+        .
+        .
+        .
+        Attachments[] 
+    }
+```
+
+An attachment is described with the following fields
+```
+    {
+        Id (Guid) - Id of the attachment
+        Name (string) 
+        Hash (Sha1)
+        FileType (string) - The file extention
+        Created (DateTime) - The time the file was created
+        Updated (DateTime) - The last time the file was updated
+        Href (Uri) - Link to download the file
+    }
+```
+
+### Request
+
+Type 
+```
+Http get
+```
+
+Address
+```
+ /api/cases/{id}/attachments/{attachmentId}
+```
+
+Required field
+```
+There are no required fields
+```
+
+### Reponses
+
+**Success**
+
+Header
+```
+HTTP/1.1 200 OK
+Content-Type: application/octet-stream
+filename="<NameOfTheFile>"
+```
+
+Body
+```
+Stream of data
+```
+
+### Example 1
+
+**Request**
+
+Url
+```
+GET https://eumetadata.3shapecommunicate.com/api/cases/531918a6-2879-48af-9434-a57600ac4123/attachments/417752978da43bb0fa3d03f4fef597904334993a HTTP/1.1
+```
+Header
+```
+Authorization: Bearer <token>
+```
+
+**Response**
+
+Header
+```
+HTTP/1.1 200 OK
+Content-Type: application/octet-stream
+filename="417752978da43bb0fa3d03f4fef597904334993a"
+```
+
+Body
+```
+stream of data
+```
+ 
+## Scans
+
+This is a specialized section of the case, files listed in this section have additional metadata associated with them.
+
+The Scan files are retrived in the same way described in the Attachment section.
+
+### Description
+
+Scans are located at the root of the Case object
+```
+    {
+        Id : Id of the case
+        .
+        .
+        .
+        Scans[] 
+    }
+```
+
+A scan is described with the following fields
+```
+    {
+        Id (Guid) - Id of the attachment
+        ScanTimestamp (DateTime)
+        Type (string) - Describing the type of scan 
+        Href (Uri) - Link to download the file
+        Hash (Sha1)
+        FileType (string) - The file extention
+    }
+```
+
+## Designs
+
+This is a specialized section of the case, files listed in this section have additional metadata associated with them.
+
+The Designs files are retrived in the same way described in the Attachment section.
+
+### Description
+
+Designs are located at the root of the Case object
+```
+    {
+        Id : Id of the case
+        .
+        .
+        .
+        Designs[] 
+    }
+```
+
+A scan is described with the following fields
+```
+    {
+        Id (Guid) - Id of the attachment
+        ScanTimestamp (DateTime)
+        Type (string) - Describing the type of scan 
+        Href (Uri) - Link to download the file
+        Hash (Sha1)
+        FileType (string) - The file extention
+    }
 ```
