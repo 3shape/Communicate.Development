@@ -41,7 +41,7 @@ Address
 
 Header
 
-See the [OAuth standard][OAuth standard page] for more information about the token field 
+See the [OAuth Authorization request][OAuth Authorization Request] for more information about the token field 
 
 ```
 Authorization: Basic <token>
@@ -158,4 +158,5 @@ An error has occurred.
 
 
 [OAuth standard page]: http://oauth.net/2/
+[OAuth Authorization Request]: http://tools.ietf.org/html/rfc6750#section-2.1
 
