@@ -156,7 +156,7 @@ An error has occurred.
 
 # Pairing 
 
-
+# Links
 [OAuth standard page]: http://oauth.net/2/
 [OAuth Authorization Request]: http://tools.ietf.org/html/rfc6750#section-2.1
 
