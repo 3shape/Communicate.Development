@@ -1,7 +1,7 @@
 # Sample workflow
 ![alt tag](OAuth2Flow2.png)
 
-# WF1 - Pairing workflow 
+## WF1 - Pairing workflow 
 
 Generate code using following url
 ```
@@ -27,7 +27,7 @@ Follow the step(s) described in section [M2.4 >] [M2.4]
 Follow the step(s) described in section [M2.1 >] [M2.1]
 
 
-#  WF2 - Get Cases using doctor’s credentials
+##  WF2 - Get Cases using doctor’s credentials
 
 **Assumption:** The doctor has already completed the account pairing process (WF1).
 
@@ -65,7 +65,7 @@ It is very important to use the client token for this. The doctor’s token will
 **This requires special permission that will be granted on a case by case basis.**
 
 
-#  WF3 - Display data using limited access 
+##  WF3 - Display data using limited access 
 
 _Note: This workflow is a little more complex as it requires you to filter the listed content. The workflow is more commenly used as it only grants access to the data the doctor chose to share with the 3rd party_
 **Important: for this workflow to work you must store the users Communicate Id in your system**
