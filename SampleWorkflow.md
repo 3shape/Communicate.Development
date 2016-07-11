@@ -32,6 +32,7 @@ Follow the step(s) described in section [M2.1 >] [M2.1]
 **Assumption:** The doctor has already completed the account pairing process (WF1).
 
 **Step 1: Use doctors token obtained in WF1.**
+
 _Note: This will grant access to all of the doctors data - not just the data that is elected to share with the 3rd party_
 
 **Step 2: Obtain the Region Uri for the doctor’s Communicate user.**
@@ -62,15 +63,17 @@ This method returns cases 10 at a time. To browse to the next ten, use “page=1
 * 4.2) Using your client token, download the STL files from the Attachments list, by following the ”Href” link on every attachment of type ”stl”.
 
 It is very important to use the client token for this. The doctor’s token will not work because our system does not allow the doctor to download STL files. 
-**This requires special permission that will be granted on a case by case basis.**
 
+**This requires special permission that will be granted on a case by case basis.**
 
 ##  WF3 - Display data using limited access 
 
 _Note: This workflow is a little more complex as it requires you to filter the listed content. The workflow is more commenly used as it only grants access to the data the doctor chose to share with the 3rd party_
+
 **Important: for this workflow to work you must store the users Communicate Id in your system**
 
 **Step 1: Obtain the authentication token for your System account.**
+
 Use the account thats paired with the user that should have his/her data displayed 
 
 **Step 2: Obtain the Region Uri.**
@@ -88,6 +91,7 @@ This will return a list of cases inclusing not just the user for whom you want t
 **Step 4: Filter out cases that do not belong to client**
 
 Only display cases from step 3 when ever the Communicate Id matches the one you have stored in your system. 
+
 _Note: This requires you to iterate on the paged list from Step 3. - we recommend that you keep the list to a specific timeframe to limit this iteration._ 
 
 ![alt tag](ApiBrowserCasesPage0_2.png)
