@@ -4,7 +4,7 @@
 The User Service service is the central location for access to and management of all shared user information. 
 
 
-# Environments
+# U1 - Environments
 
 List of available environment and their use
 
@@ -21,11 +21,11 @@ New features will be made available in this environment before final release to 
 https://staging-users.3shapecommunicate.com
 ```
 
-# User requests
+# U2 - User requests
 
 A list of user specific actions that can be performed on the service 
 
-## Create User 
+## U2.1 - Create User 
 
 ### Request 
 
@@ -119,7 +119,7 @@ Communicate user object
 ```
 
 
-## Get User 
+## U2.2 - Get User 
 
 There are multiple ways of retriving information about a User 
 **Note:If requesting the object of a user who is not you, the content of the user object will be filtered to match your relationship with the user**
@@ -221,11 +221,11 @@ Communicate user object
 ```
 
 
-# Connection requests
+# U3 - Connection requests
 
 Connections is the way which Communicate users use to exchange data. If a approved connection is not available between two users they are not able to collaborate on a case.
 
-## Request Connection
+## U3.1 - Request Connection
 The process of initiating a connection, this requires access to both users Communicate User Id
 
 
@@ -276,7 +276,7 @@ Communicate Connection object
 ```
 
 
-## Approve Connection
+## U3.2 - Approve Connection
 Performing this request approves a connection between two parties. This request must be performed by the user (with the token of) that was specified as the remote user
 
 ### Request 
@@ -321,7 +321,7 @@ HTTP/1.1 200 OK
 ```
 
 
-## Delete Connection
+## U3.3 - Delete Connection
 This is the method to reject or remove a connection.
 
 ### Request 

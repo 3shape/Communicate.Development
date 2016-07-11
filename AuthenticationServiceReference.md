@@ -5,7 +5,7 @@ The Authentication Service is a simple implementation of the OAuth standard
 
 [OAuth standard >][OAuth standard page]
 
-# Environments
+# A1 - Environments
 
 
 ## Production 
@@ -22,9 +22,9 @@ https://staging-auth.3shapecommunicate.com
 ```
 
 
-# Token requests
+# A2 - Token requests
 
-## Get token
+## A2.1 - Get token
 The process of retriving a token that can be used to authenticate the user with Communicate Services
 
 ### Request 
@@ -98,10 +98,10 @@ Body
 username=some@email.com&password=123456&grant_type=password
 ```
 
-## Refresh token
+## A2.2 - Refresh token
 _todo_
 
-## Token info
+## A2.3 - Token info
 The process of retriving information about the token
 
 ### Request 
@@ -154,7 +154,7 @@ Body
 An error has occurred.
 ```
 
-# Pairing 
+# A3 - Pairing 
 
 [OAuth standard page]: http://oauth.net/2/
 [OAuth Authorization Request]: http://tools.ietf.org/html/rfc6750#section-2.1

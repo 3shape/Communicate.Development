@@ -1,8 +1,8 @@
-#Metadata Service
+# Metadata Service
 The Communicate Metadata service is a REST service that delivers functionality regarding the metadata of cases that have been submitted to the Communicate platform
 
 
-#Environments
+# M1 - Environments
 
 ## Production regional servers
 America
@@ -32,11 +32,11 @@ https://staging-eumetadata.3shapecommunicate.com
 ```
 
 
-# Case requests
+# M2 - Case requests
 
 A list of case related actions that can be performed on the service 
 
-## Get Case 
+## M2.1 - Get Case 
 Getting a case with a known Id is performed by making a get request to /api/cases/{id}. The key element to the request are is the Id. This is a GUID.
 
 Using Get Case will always return the latest version of the Case.
@@ -110,7 +110,7 @@ Header
 Authorization: Bearer <token>
 ```
 
-## Get Case version
+## M2.2 - Get Case version
 Getting a case with a known Id and a specific version is performed by making a get request to /api/cases/{id}/version/{version}. 
 
 Every time a case is updated a full version of that case is saved and will be available with this api.
@@ -186,7 +186,7 @@ Authorization: Bearer <token>
 ```
 
 
-## Get Cases 
+## M2.3 - Get Cases 
 Getting a paged list of case.
 
 * The page size is 10 and a counter describing the amount of cases
@@ -329,7 +329,7 @@ Count :  7
 } 
 ```
 
-## Get updated cases
+## M2.4 - Get updated cases
 Get a unpaged list of updated cases
 
 ### Request
@@ -381,11 +381,97 @@ Header
 Authorization: Bearer <token>
 ```
 
-# Files
+## M2.5 - Search for cases
+
+Search for cases by a certain search term by making a request to /api/cases/search
+Returns a paged list of cases.
+* The page size is 10 and a counter describing the amount of cases
+* List of cases is always returned in decending order (date)
+* Cases are returned with in a timespan (yyyy-mm-ddThh:mm:ssZ)
+
+### Request
+
+Type 
+```
+Http get
+```
+
+Address
+
+Get the first page of cases satisfying the asearchstring search term
+```
+ /api/cases?searchString=asearchstring&page=0
+```
+
+Get the first page of cases from a specific FromDate satisfying the asearchstring search term 
+```
+ /api/cases?searchString=asearchstring&page=0&from={FromDate}
+```
+
+Get the first page of cases in a timespan from the specified FromDate to the specified ToDate satisfying the asearchstring search term 
+```
+ /api/cases?searchString=asearchstring&page=0&from={FromDate}&to={ToDate}
+```
+
+Required field
+```
+searchString
+page
+```
+
+### Reponses
+
+**Success**
+
+Header
+```
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+```
+
+Body
+```
+Cases[10]
+Count(int)
+```
+
+### Example 1
+Url
+```
+GET https://eumetadata.3shapecommunicate.com/api/cases/search?searchString=somestring&page=0&&from=2016-01-01T12:00:00Z&to=2016-01-02T18:00:00Z HTTP/1.1
+```
+Header
+```
+Authorization: Bearer <token>
+```
+
+## M2.6 - Get case increment 
+
+Getting a specific case increment is performed by making a get request to /api/cases/increments/{id}. The key element to the request are is the Id. This is a GUID.
+
+
+### Request
+
+Type 
+```
+Http get
+```
+
+Address
+```
+ /api/cases/increments/{id}
+```
+
+Required field
+```
+id
+```
+
+# M3 - Files
 
 This section describes accessing the different files on a case
 
-## Attachment 
+## M3.1 - Attachment 
 
 All files associated with a case can always be located in the Attachment section of a case.
 
@@ -487,7 +573,7 @@ Body
 stream of data
 ```
  
-## Scans
+## M3.2 - Scans
 
 This is a specialized section of the case, files listed in this section have additional metadata associated with them.
 
@@ -518,7 +604,7 @@ A scan is described with the following fields
     }
 ```
 
-## Designs
+## M3.3 - Designs
 
 This is a specialized section of the case, files listed in this section have additional metadata associated with them.
 
@@ -547,28 +633,6 @@ A design is described with the following fields
         Hash (Sha1)
         FileType (string) - The file extention
     }
-```
-
-## Get case increment 
-
-Getting a specific case increment is performed by making a get request to /api/cases/increments/{id}. The key element to the request are is the Id. This is a GUID.
-
-
-### Request
-
-Type 
-```
-Http get
-```
-
-Address
-```
- /api/cases/increments/{id}
-```
-
-Required field
-```
-id
 ```
 
 ### Reponses
@@ -609,7 +673,7 @@ Header
 Authorization: Bearer <token>
 ```
 
-## Get case comment text
+## M3.4 - Get case comment text
 Get the text for en given comment on a given case
 
 ### Request
@@ -697,70 +761,8 @@ Header
 Authorization: Bearer <token>
 ```
 
-## Search for cases
 
-Search for cases by a certain search term by making a request to /api/cases/search
-Returns a paged list of cases.
-* The page size is 10 and a counter describing the amount of cases
-* List of cases is always returned in decending order (date)
-* Cases are returned with in a timespan (yyyy-mm-ddThh:mm:ssZ)
-
-### Request
-
-Type 
-```
-Http get
-```
-
-Address
-```
- Get the first page of cases satisfying the asearchstring search term
-```
- /api/cases?searchString=asearchstring&page=0
-```
-
-Get the first page of cases from a specific FromDate satisfying the asearchstring search term 
-```
- /api/cases?searchString=asearchstring&page=0&from={FromDate}
-```
-Get the first page of cases in a timespan from the specified FromDate to the specified ToDate satisfying the asearchstring search term 
-```
- /api/cases?searchString=asearchstring&page=0&from={FromDate}&to={ToDate}
-```
-
-Required field
-```
-searchString
-page
-```
-
-### Reponses
-
-**Success**
-
-Header
-```
-HTTP/1.1 200 OK
-Content-Type: application/json; charset=utf-8
-```
-
-Body
-```
-Cases[10]
-Count(int)
-```
-
-### Example 1
-Url
-```
-GET https://eumetadata.3shapecommunicate.com/api/cases/search?searchString=somestring&page=0&&from=2016-01-01T12:00:00Z&to=2016-01-02T18:00:00Z HTTP/1.1
-```
-Header
-```
-Authorization: Bearer <token>
-```
-
-## Change case state
+## M4.4 - Change case state
 Approves or reject a case
 
 ### Request
@@ -806,7 +808,8 @@ Content-Type: application/json; charset=utf-8
 
 Body
 ```
-Unsupported state: {state}```
+Unsupported state: {state}
+```
 
 
 **Failed: Case does not exist**
