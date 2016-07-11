@@ -780,3 +780,55 @@ Header
 Authorization: Bearer <token>
 ```
 
+
+## Get updated cases
+Get a list of updated cases
+
+### Request
+
+Type 
+```
+Http get
+```
+
+_Address_
+ 
+ Get a list of updated cases from a specified from date
+```
+ /api/updatedcases?from={fromDate}
+```
+
+ Get a list of updated cases within a given time span
+```
+ /api/cases?page=0&from={FromDate}&to={ToDate}
+```
+
+Required field
+```
+from
+```
+
+### Reponses
+
+**Success**
+
+Header
+```
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+```
+
+Body
+```
+A list of updated cases objects
+```
+
+### Example 1
+Url
+```
+GET https://eumetadata.3shapecommunicate.com/api/updatedcases?from=2016-01-01T12:00:00Z HTTP/1.1
+```
+Header
+```
+Authorization: Bearer <token>
+```
