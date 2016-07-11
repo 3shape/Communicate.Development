@@ -496,61 +496,287 @@ A design is described with the following fields
         FileType (string) - The file extention
     }
 ```
-# Sample workflow
-![alt tag](OAuth2Flow.png)
-### Fiddler
-* Generate code using following url
-https://auth.3shapecommunicate.com/oauth/authorise?client_id=myId&redirect_uri=https%3A%2F%2Fwww.mysite.com%2F&response_type=code
-* In fiddler post a request with following url, header and request body to get the token
-Url - https://auth.3shapecommunicate.com/oauth/token
+
+## Get case increment 
+
+Getting a specific case increment is performed by making a get request to /api/cases/increments/{id}. The key element to the request are is the Id. This is a GUID.
+
+
+### Request
+
+Type 
+```
+Http get
+```
+
+Address
+```
+ /api/cases/increments/{id}
+```
+
+Required field
+```
+id
+```
+
+### Reponses
+
+**Success**
+
 Header
-Authorization: Basic T3JtY286ZDY3ZTg4MGViNmVmNDhmOThkMGNmZTBlOGYwNjNjMzU=
-Content-Type: application/x-www-form-urlencoded; charset=utf-8
-Request body
-code=generated_code&redirect_uri=http%3A%2F%2Fmysite.com%2F%3FtmpVar%3D0&grant_type=authorization_code
-* Get request to access the list of cases using token
-url - https://as1.3shapecommunicate.com/api/updatedcases?from=2015-01-01%2012:00:00Z&to=2016-04-19%2012:00:00Z
+```
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+```
+
+Body
+```
+Communicate case increment object
+```
+
+**Failed: Increment does not exist**
+
 Header
-Authorization: Bearer token
-Content-Type: application/x-www-form-urlencoded; charset=utf-8
-* Get request to access the case using case_id and token
-url-https://as1.3shapecommunicate.com/api/cases/(case_id)
+```
+HTTP/1.1 400 Bad Request
+Content-Type: application/json; charset=utf-8
+```
+
+Body
+```
+No increment with Id {id} could be found
+```
+
+### Example 1
+Url
+```
+GET https://eumetadata.3shapecommunicate.com/api/cases/increments/531918a6-2879-48af-9434-a57600ac4123 HTTP/1.1
+```
+Header
+```
+Authorization: Bearer <token>
+```
+
+## Get case comment text
+Get the text for en given comment on a given case
+
+### Request
+
+Type 
+```
+Http get
+```
+
+Address
+```
+/api/cases/{id}/comments/{commentId}/text
+```
+
+Required field
+```
+id
+commentId
+```
+
+### Reponses
+
+**Success**
+
+Header
+```
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+```
+
+Body
+```
+A string with the comment text
+```
+
+**Failed: Case does not exist**
+
+Header
+```
+HTTP/1.1 400 Bad Request
+Content-Type: application/json; charset=utf-8
+```
+
+Body
+```
+No case with Id {id} could be found
+```
+
+**Failed: Unable to access case**
+
+This happens if a case is accessed with a user that is not an actor on the case
+Header
+```
+HTTP/1.1 400 Bad Request
+Content-Type: application/json; charset=utf-8
+```
+
+Body
+```
+You don't have permission to access case {id}
+```
+
+**Failed: Comment not found**
+
+This happens when the provided comment id does not exist on the comments collencion of the case
+
+Header
+```
+HTTP/1.1 400 Bad Request
+Content-Type: application/json; charset=utf-8
+```
+
+Body
+```
+Comment not found
+```
+
+### Example 1
+Url
+```
+GET https://eumetadata.3shapecommunicate.com/api/cases/531918a6-2879-48af-9434-a57600ac4123/comments/4a51f8a6-2879-68ab-9434-a57600ac4123 HTTP/1.1
+```
+Header
+```
+Authorization: Bearer <token>
+```
+
+## Search for cases
+
+Search for cases by a certain search term by making a request to /api/cases/search
+Returns a paged list of cases.
+* The page size is 10 and a counter describing the amount of cases
+* List of cases is always returned in decending order (date)
+* Cases are returned with in a timespan (yyyy-mm-ddThh:mm:ssZ)
+
+### Request
+
+Type 
+```
+Http get
+```
+
+Address
+```
+ Get the first page of cases satisfying the asearchstring search term
+```
+ /api/cases?searchString=asearchstring&page=0
+```
+
+Get the first page of cases from a specific FromDate satisfying the asearchstring search term 
+```
+ /api/cases?searchString=asearchstring&page=0&from={FromDate}
+```
+Get the first page of cases in a timespan from the specified FromDate to the specified ToDate satisfying the asearchstring search term 
+```
+ /api/cases?searchString=asearchstring&page=0&from={FromDate}&to={ToDate}
+```
+
+Required field
+```
+searchString
+page
+```
+
+### Reponses
+
+**Success**
+
+Header
+```
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+```
+
+Body
+```
+Cases[10]
+Count(int)
+```
+
+### Example 1
+Url
+```
+GET https://eumetadata.3shapecommunicate.com/api/cases/search?searchString=somestring&page=0&&from=2016-01-01T12:00:00Z&to=2016-01-02T18:00:00Z HTTP/1.1
+```
+Header
+```
+Authorization: Bearer <token>
+```
+
+## Change case state
+Approves or reject a case
+
+### Request
+
+Type 
+```
+Http put
+```
+
+Address
+```
+ /api/cases/{id}/state/{state}
+```
+
+Required field
+```
+id
+state ("approved" or "rejected")
+```
+
+### Reponses
+
+**Success**
+
+Header
+```
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+```
+
+Body
+```
+Nothing is returned
+```
+
+**Failed: Unsupported state
+
+Header
+```
+HTTP/1.1 400 Bad Request
+Content-Type: application/json; charset=utf-8
+```
+
+Body
+```
+Unsupported state: {state}```
 
 
-### Approach #1: Get Cases using doctor’s credentials
+**Failed: Case does not exist**
 
-**Assumption:** The doctor has already completed the account pairing process. 
+Header
+```
+HTTP/1.1 400 Bad Request
+Content-Type: application/json; charset=utf-8
+```
 
-**Step 1: Obtain doctor’s token.**
-* Url - https://auth.3shapecommunicate.com/oauth/token
+Body
+```
+No case with Id {id} could be found
+```
 
-**Step 2: Obtain the Region Uri for the doctor’s Communicate user.**
-* Url - https://users.3shapecommunicate.com/api/users/me 
-* Make sure you use the doctor’s token in the request header
-* The response will contain the doctor’s RegionUri. Remember this value, as it will be needed later in the workflow. An example of the response to the “me” endpoint is shown below.
-![alt tag](ApiBrowserMe.png)
+### Example 1
+Url
+```
+PUT https://eumetadata.3shapecommunicate.com/api/cases/531918a6-2879-48af-9434-a57600ac4123/state/approved HTTP/1.1
+```
+Header
+```
+Authorization: Bearer <token>
+```
 
-**Step 3: Get request to access the list of cases using the doctor’s token.**
-* Url - https://<Doctor’s RegionUri>/api/cases?page=0&from=2016-01-01%2012:00:00Z&to=2016-04-19%2012:00:00Z
-* Notice the Url to get cases depends on the doctor’s RegionUri.
-* Header
-    Authorization: Bearer token
-    Content-Type: application/x-www-form-urlencoded; charset=utf-8
-* This method returns cases 10 at a time. To browse to the next ten, use “page=1” instead of “page=0”. And so on. An example is shown below.
-![alt tag](ApiBrowserCasesPage0.png)
-
-**Step 4: Filter out cases that do not belong to client**
-* 4.1) To do this, you first need the Communicate User Id for the Client account registered in the doctor’s region (Client should have 3 accounts registered), as follows:
-Obtain a token for the client account in the doctor’s region, as usual:
-https://auth.3shapecommunicate.com/oauth/token
-Then call the “me” endpoint to get your User Id:
-https://users.3shapecommunicate.com/api/users/me
-![alt tag](ApiBrowserMe2.png)
-
-* 4.2) Next, loop through all the doctor’s cases from Step 3. For each case, make sure (absolutely sure!) that it was sent to the client, by checking that at least one of the elements in the “Actors” list has the user Id found in 4.1. This is shown below.
-![alt tag](ApiBrowserCasesPage0_2.png)
-
-**Step 5: Download STL files**
-* 5.1) Obtain an client token for the client user in the same region as the doctor, exactly as in step 4.1. (Note you can always just refresh your token instead of requesting a new one).
-* 5.2) Using your client token, download the STL files from the Attachments list, by following the ”Href” link on every attachment of type ”stl”.
-It is very important to use the client token for this. The doctor’s token will not work because our system does not allow the doctor to download STL files. This requires special permission that we have granted your accounts.
