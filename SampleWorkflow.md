@@ -1,7 +1,7 @@
 # Sample workflow
 ![alt tag](OAuth2Flow2.png)
 
-## Fiddler
+## WF1 - Pairing workflow 
 Generate code using following url
 ```
 https://auth.3shapecommunicate.com/oauth/authorise?client_id=myId&redirect_uri=https%3A%2F%2Fwww.mysite.com%2F&response_type=code
@@ -25,9 +25,9 @@ Follow the step(s) described in section [M2.4 >] [M2.4]
 
 Follow the step(s) described in section [M2.1 >] [M2.1]
 
-## Approach #1: Get Cases using doctor’s credentials
+##  WF2 - Get Cases using doctor’s credentials
 
-**Assumption:** The doctor has already completed the account pairing process. 
+**Assumption:** The doctor has already completed the account pairing process (WF1).
 
 **Step 1: Obtain doctor’s token.**
 
@@ -77,7 +77,8 @@ Next, loop through all the doctor’s cases from Step 3. For each case, make sur
 
 * 5.2) Using your client token, download the STL files from the Attachments list, by following the ”Href” link on every attachment of type ”stl”.
 
-It is very important to use the client token for this. The doctor’s token will not work because our system does not allow the doctor to download STL files. This requires special permission that we have granted your accounts.
+It is very important to use the client token for this. The doctor’s token will not work because our system does not allow the doctor to download STL files. 
+**This requires special permission that will be granted on a case by case basis.**
 
 [A2.1]: http://3shapeas.github.io/Communicate.Development/AuthenticationServiceReference.html#a2-token-requests-a21-get-token
 [U2.2]: http://3shapeas.github.io/Communicate.Development/UserServiceReference.html#u2-user-requests-u22-get-user
