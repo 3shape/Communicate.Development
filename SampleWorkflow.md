@@ -1,7 +1,8 @@
 # Sample workflow
 ![alt tag](OAuth2Flow2.png)
 
-## WF1 - Pairing workflow 
+# WF1 - Pairing workflow 
+
 Generate code using following url
 ```
 https://auth.3shapecommunicate.com/oauth/authorise?client_id=myId&redirect_uri=https%3A%2F%2Fwww.mysite.com%2F&response_type=code
@@ -25,13 +26,13 @@ Follow the step(s) described in section [M2.4 >] [M2.4]
 
 Follow the step(s) described in section [M2.1 >] [M2.1]
 
-##  WF2 - Get Cases using user credentials
+
+#  WF2 - Get Cases using doctor’s credentials
 
 **Assumption:** The doctor has already completed the account pairing process (WF1).
 
-**Step 1: Obtain doctor’s token.**
-
-Follow the step(s) described in section [A2.1 >] [A2.1]
+**Step 1: Use doctors token obtained in WF1.**
+_Note: This will grant access to all of the doctors data - not just the data that is elected to share with the 3rd party_
 
 **Step 2: Obtain the Region Uri for the doctor’s Communicate user.**
 
@@ -54,31 +55,43 @@ This method returns cases 10 at a time. To browse to the next ten, use “page=1
 
 ![alt tag](ApiBrowserCasesPage0.png)
 
-**Step 4: Filter out cases that do not belong to client**
+**Step 4: Download STL files**
 
-To do this, you first need the Communicate User Id for the Client account registered in the doctor’s region (Client should have 3 accounts registered), as follows:
-Obtain a token for the client account in the doctor’s region, as usual:
+* 4.1) Obtain an client token for your account in the same region as the doctor. (Note you can always just refresh your token instead of requesting a new one).
 
-Follow the step(s) described in section [A2.1 >] [A2.1]
-
-Then call the “me” endpoint to get your User Id:
-
-Follow the step(s) described in section [U2.2 >] [U2.2]
-
-![alt tag](ApiBrowserMe2.png)
-
-Next, loop through all the doctor’s cases from Step 3. For each case, make sure (absolutely sure!) that it was sent to the client, by checking that at least one of the elements in the “Actors” list has the user Id found above. This is shown below.
-
-![alt tag](ApiBrowserCasesPage0_2.png)
-
-**Step 5: Download STL files**
-
-* 5.1) Obtain an client token for the client user in the same region as the doctor, exactly as in step 4.1. (Note you can always just refresh your token instead of requesting a new one).
-
-* 5.2) Using your client token, download the STL files from the Attachments list, by following the ”Href” link on every attachment of type ”stl”.
+* 4.2) Using your client token, download the STL files from the Attachments list, by following the ”Href” link on every attachment of type ”stl”.
 
 It is very important to use the client token for this. The doctor’s token will not work because our system does not allow the doctor to download STL files. 
 **This requires special permission that will be granted on a case by case basis.**
+
+
+#  WF3 - Display data using limited access 
+
+_Note: This workflow is a little more complex as it requires you to filter the listed content. The workflow is more commenly used as it only grants access to the data the doctor chose to share with the 3rd party_
+**Important: for this workflow to work you must store the users Communicate Id in your system**
+
+**Step 1: Obtain the authentication token for your System account.**
+Use the account thats paired with the user that should have his/her data displayed 
+
+**Step 2: Obtain the Region Uri.**
+
+Follow the step(s) described in section [U2.2 >] [U2.2]
+
+This will return your systems accounts regional Url.
+
+**Step 3: Get request to access the list of cases.**
+
+Follow the step(s) described in section [M2.3 >] [M2.3]
+
+This will return a list of cases inclusing not just the user for whom you want to display data but everyone your are paired with!
+
+**Step 4: Filter out cases that do not belong to client**
+
+Only display cases from step 3 when ever the Communicate Id matches the one you have stored in your system. 
+_Note: This requires you to iterate on the paged list from Step 3. - we recommend that you keep the list to a specific timeframe to limit this iteration._ 
+
+![alt tag](ApiBrowserCasesPage0_2.png)
+
 
 [A2.1]: http://3shapeas.github.io/Communicate.Development/AuthenticationServiceReference.html#a2-token-requests-a21-get-token
 [U2.2]: http://3shapeas.github.io/Communicate.Development/UserServiceReference.html#u2-user-requests-u22-get-user
