@@ -72,7 +72,9 @@ Next, loop through all the doctor’s cases from Step 3. For each case, make sur
 ![alt tag](ApiBrowserCasesPage0_2.png)
 
 **Step 5: Download STL files**
+
 * 5.1) Obtain an client token for the client user in the same region as the doctor, exactly as in step 4.1. (Note you can always just refresh your token instead of requesting a new one).
+
 * 5.2) Using your client token, download the STL files from the Attachments list, by following the ”Href” link on every attachment of type ”stl”.
 
 It is very important to use the client token for this. The doctor’s token will not work because our system does not allow the doctor to download STL files. This requires special permission that we have granted your accounts.
