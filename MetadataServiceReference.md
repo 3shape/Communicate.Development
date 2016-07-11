@@ -5,17 +5,36 @@ The Communicate Metadata service is a REST service that delivers functionality r
 # M1 - Environments
 
 ## Production regional servers
+_Current production Api v1.0 - the v1.0 Api is expected to be discontinued Q4 2016_
+
+America
+```
+https://us.3shapecommunicate.com
+```
+Asia 
+```
+https://as1.3shapecommunicate.com
+```
+Europe
+```
+https://www.3shapecommunicate.com
+```
+
+## Production regional servers (new servers)
+_Production servers for Api v1.5 the servers are experimental and should not be used for production_
+_This Api is the replacement for the V1.0 Api_
+
 America
 ```
 https://ammetadata.3shapecommunicate.com
 ```
 Asia 
 ```
-https://ammetadata.3shapecommunicate.com
+https://asmetadata.3shapecommunicate.com
 ```
 Europe
 ```
-https://ammetadata.3shapecommunicate.com
+https://eumetadata.3shapecommunicate.com
 ```
 
 ## Staging regional servers
