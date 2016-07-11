@@ -25,7 +25,7 @@ Follow the step(s) described in section [M2.4 >] [M2.4]
 
 Follow the step(s) described in section [M2.1 >] [M2.1]
 
-##  WF2 - Get Cases using doctor’s credentials
+##  WF2 - Get Cases using user credentials
 
 **Assumption:** The doctor has already completed the account pairing process (WF1).
 
