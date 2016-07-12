@@ -1,5 +1,5 @@
 # Communicate
-Write somethign about Communicate
+Write something about Communicate
 
 # Data protection
 
